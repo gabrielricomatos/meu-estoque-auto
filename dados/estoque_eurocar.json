@@ -1,0 +1,38 @@
+[
+    {
+        "link_details": "https://eurocarveiculos.com/carros/Ford/Ranger/Ltdcd4a32c/Ford-Ranger-Ltdcd4a32c-2017-Londrina-Parana-6941383.html",
+        "name": "FORD RANGER LTDCD4A32C 2017/2017 DIESEL",
+        "brand": "FORD",
+        "model_base": "RANGER",
+        "version_details": "LTDCD4A32C 2017/2017 DIESEL",
+        "price": 111.9,
+        "year": "N/A",
+        "km": 0,
+        "transmission_type": "N/A",
+        "fuel_type": "N/A",
+        "color": "N/A",
+        "doors": 0,
+        "options": [],
+        "description": "",
+        "main_image_url": "",
+        "photos": []
+    },
+    {
+        "link_details": "https://eurocarveiculos.com/carros/Volkswagen/Gol/16l-Mb5/Volkswagen-Gol-16l-Mb5-2022-Londrina-Parana-6931114.html",
+        "name": "VOLKSWAGEN GOL 1.6L MB5 2021/2022 FLEX",
+        "brand": "VOLKSWAGEN",
+        "model_base": "GOL",
+        "version_details": "1.6L MB5 2021/2022 FLEX",
+        "price": 54.9,
+        "year": "N/A",
+        "km": 0,
+        "transmission_type": "N/A",
+        "fuel_type": "N/A",
+        "color": "N/A",
+        "doors": 0,
+        "options": [],
+        "description": "",
+        "main_image_url": "",
+        "photos": []
+    }
+]

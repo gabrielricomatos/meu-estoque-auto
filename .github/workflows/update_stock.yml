@@ -32,7 +32,7 @@ jobs:
         # Ele criará a pasta 'dados' e salvará 'estoque_eurocar.json' dentro dela.
         run: python scraper_eurocar_final.py 
 
-            - name: Commit and push if data changed
+      - name: Commit and push if data changed
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
@@ -44,7 +44,6 @@ jobs:
           else
             echo "Nenhuma mudança nos dados do estoque para commitar."
           fi
-
 
       # Os passos abaixo são para publicar no GitHub Pages, caso você queira um link como seudominio.github.io/repositorio/dados/estoque_eurocar.json
       # Se você for usar apenas o link "raw" do GitHub, estes passos de Pages são opcionais mas não prejudicam.

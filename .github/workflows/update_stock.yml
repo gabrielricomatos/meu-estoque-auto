@@ -1,0 +1,62 @@
+name: Atualizar Estoque Eurocar
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"  # Executa a cada 3 horas
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  scrape_and_deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11" # Usando a versão que testamos
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml # Adicionado lxml que usamos no script
+
+      - name: Run scraper script
+        # O script Python deve ser nomeado como scraper_eurocar_final.py e estar na raiz do repo
+        # Ele criará a pasta 'dados' e salvará 'estoque_eurocar.json' dentro dela.
+        run: python scraper_eurocar_final.py 
+
+      - name: Commit and push if data changed
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          # Adiciona o arquivo JSON específico gerado pelo script
+          git add dados/estoque_eurocar.json || echo "Arquivo dados/estoque_eurocar.json não encontrado para adicionar."
+          # Verifica se há mudanças para commitar
+          if ! git diff --staged --quiet; then
+            git commit -m "Atualiza dados do estoque via scraper"
+            git push
+          else
+            echo "Nenhuma mudança nos dados do estoque para commitar."
+          fi
+
+      # Os passos abaixo são para publicar no GitHub Pages, caso você queira um link como seudominio.github.io/repositorio/dados/estoque_eurocar.json
+      # Se você for usar apenas o link "raw" do GitHub, estes passos de Pages são opcionais mas não prejudicam.
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload da pasta 'dados' que contém o JSON
+          path: "./dados"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
